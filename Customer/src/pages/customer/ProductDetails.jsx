@@ -1,61 +1,55 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext"; // Cart context
+import { useAuth } from "../../context/AuthContext"; 
 import axios from "axios";
 import qrCodeImage from "../../assets/qr-code.jpg";
 
-const dummyProducts = [
+const dummyFoods = [
   {
     id: 1,
-    title: "Girls Summer Dress",
-    description: "Light and comfy dress for girls",
-    category: "girls-clothes",
-    price: 799,
+    title: "Margherita Pizza",
+    description: "Classic cheese pizza with tomato sauce",
+    category: "pizza",
+    price: 499,
     rating: 4.5,
-    image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    stock: 10
+    image: "https://images.unsplash.com/photo-1601924582975-88bb69b1680f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 2,
-    title: "Boys T-Shirt",
-    description: "Cotton t-shirt for boys",
-    category: "boys-clothes",
-    price: 499,
+    title: "Veg Burger",
+    description: "Delicious vegetable burger with fresh lettuce",
+    category: "burger",
+    price: 299,
     rating: 4.2,
-      image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", 
-  
-    stock: 15
+    image: "https://images.unsplash.com/photo-1606756792556-8f1b7c0a7f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 3,
-    title: "Men's Sneakers",
-    description: "Stylish sneakers for boys and men",
-    category: "shoes",
-    price: 1499,
+    title: "Pasta Alfredo",
+    description: "Creamy white sauce pasta with vegetables",
+    category: "pasta",
+    price: 399,
     rating: 4.7,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", // men's shoes
-    stock: 8
+    image: "https://images.unsplash.com/photo-1601050693812-19fbc0d4d2a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 4,
-    title: "Women's Sandals",
-    description: "Comfortable sandals for girls",
-    category: "slippers",
-    price: 999,
-    rating: 4.4,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", // women's slippers
-    stock: 12
+    title: "Chocolate Shake",
+    description: "Rich chocolate milkshake with whipped cream",
+    category: "beverages",
+    price: 199,
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
   },
   {
     id: 5,
-    title: "Girls Kurti Set",
-    description: "Festive wear for girls",
-    category: "girls-clothes",
-    price: 1199,
-    rating: 4.6,
-    image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    stock: 5
+    title: "Grilled Sandwich",
+    description: "Toasted sandwich with cheese and veggies",
+    category: "sandwich",
+    price: 249,
+    rating: 4.3,
+    image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
   },
 ];
 
@@ -71,7 +65,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    const foundProduct = dummyProducts.find(p => p.id === parseInt(id));
+    const foundProduct = dummyFoods.find(p => p.id === parseInt(id));
     setProduct(foundProduct);
     setLoading(false);
   }, [id]);
@@ -102,25 +96,25 @@ const ProductDetails = () => {
 
   if (loading) return (
     <div className="flex justify-center items-center h-64">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
     </div>
   );
 
   if (!product) return (
     <div className="text-center py-16">
       <h2 className="text-2xl font-bold mb-4 text-gray-900">Product not found</h2>
-      <Link to="/products" className="inline-block px-6 py-2 rounded-md font-medium bg-indigo-600 text-white">
+      <Link to="/products" className="inline-block px-6 py-2 rounded-md font-medium bg-orange-500 text-white">
         Browse Products
       </Link>
     </div>
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="text-sm mb-6 text-gray-500">
-        <Link to="/" className="hover:text-indigo-600">Home</Link> / 
-        <Link to="/products" className="hover:text-indigo-600"> Products</Link> / 
-        <span className="font-medium text-gray-900"> {product.title}</span>
+    <div className="max-w-6xl mx-auto px-4 py-8" style={{ backgroundColor: '#F97316' }}> {/* Orange background */}
+      <div className="text-sm mb-6 text-white">
+        <Link to="/" className="hover:text-yellow-200">Home</Link> / 
+        <Link to="/products" className="hover:text-yellow-200"> Menu</Link> / 
+        <span className="font-medium"> {product.title}</span>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
@@ -130,35 +124,27 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        <div className="lg:w-1/2">
-          <h1 className="text-3xl font-bold mb-2 text-gray-900">{product.title}</h1>
+        <div className="lg:w-1/2 text-white">
+          <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
           <div className="flex items-center mb-4">
             <div className="flex text-yellow-400 mr-2">
               {'★'.repeat(Math.round(product.rating))}
               {'☆'.repeat(5 - Math.round(product.rating))}
             </div>
-            <span className="text-sm text-gray-500">
-              {product.rating} ({product.stock} in stock)
+            <span className="text-sm opacity-90">
+              {product.rating} ({product.stock} available)
             </span>
           </div>
 
-          <div className="mb-6 p-4 rounded-lg bg-gray-100">
-            <p className="text-3xl font-bold text-indigo-600">₹{product.price}</p>
+          <div className="mb-6 p-4 rounded-lg bg-orange-200 text-orange-900 font-bold text-3xl">
+            ₹{product.price}
           </div>
 
-          <p className="text-lg mb-6 text-gray-900">{product.description}</p>
-
-          <div className="mb-6">
-            <h3 className="font-semibold mb-2 text-gray-900">Details</h3>
-            <ul className="space-y-1 text-sm text-gray-500">
-              <li>Category: {product.category.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</li>
-              <li>Availability: {product.stock > 0 ? 'In Stock' : 'Out of Stock'}</li>
-            </ul>
-          </div>
+          <p className="text-lg mb-6">{product.description}</p>
 
           {/* Customer Details */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <label className="block text-sm font-medium mb-1">Full Name</label>
             <input
               type="text"
               value={customerName}
@@ -166,7 +152,7 @@ const ProductDetails = () => {
               placeholder="Enter your name"
               className="border border-gray-300 rounded p-2 w-full mb-4"
             />
-            <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
+            <label className="block text-sm font-medium mb-1">WhatsApp Number</label>
             <input
               type="tel"
               value={whatsappNumber}
@@ -176,19 +162,9 @@ const ProductDetails = () => {
             />
           </div>
 
-          {/* QR Code */}
-          <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Scan QR to Pay</h3>
-            <img
-              src={qrCodeImage}
-              alt="Scan QR"
-              className="w-48 h-48 object-contain border rounded"
-            />
-          </div>
-
           {/* Screenshot Upload */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Payment Screenshot</label>
+            <label className="block text-sm font-medium mb-1">Upload Payment Screenshot</label>
             <input
               type="file"
               accept="image/*"
@@ -203,8 +179,8 @@ const ProductDetails = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <button
-              className="flex-1 px-6 py-3 rounded-md font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition duration-200"
-              onClick={() => addToCart({ ...product, quantity: 1 })}
+              className="flex-1 px-6 py-3 rounded-md font-medium bg-orange-500 text-white hover:bg-orange-600 transition duration-200"
+              onClick={() => addToCart({ ...product, quantity: 1 })} // Add to Cart
             >
               Add to Cart
             </button>
@@ -213,7 +189,7 @@ const ProductDetails = () => {
               disabled={!screenshot || !customerName || !whatsappNumber}
               className={`flex-1 px-6 py-3 rounded-md font-medium border transition duration-200 ${
                 screenshot && customerName && whatsappNumber
-                  ? 'hover:bg-gray-50 border-indigo-600 text-indigo-600'
+                  ? 'hover:bg-gray-50 border-orange-500 text-orange-500'
                   : 'bg-gray-200 border-gray-300 text-gray-400 cursor-not-allowed'
               }`}
               onClick={handleBuyNow}
@@ -225,10 +201,10 @@ const ProductDetails = () => {
       </div>
 
       {/* Customer Reviews */}
-      <div className="mt-16">
-        <h2 className="text-2xl font-bold mb-6 text-gray-900">Customer Reviews</h2>
-        <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-          <p className="text-center text-gray-500">No reviews yet. Be the first to review!</p>
+      <div className="mt-16 text-white">
+        <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
+        <div className="bg-orange-200 rounded-lg shadow-sm p-6 border border-orange-300 text-orange-900">
+          <p className="text-center">No reviews yet. Be the first to review!</p>
         </div>
       </div>
     </div>

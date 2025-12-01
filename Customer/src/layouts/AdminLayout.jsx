@@ -9,7 +9,7 @@ const AdminLayout = () => {
       <div 
         className="flex-1 p-8" 
         style={{ 
-          backgroundColor: '#F3F4F6', 
+          backgroundColor: '#F97316', // Orange background
           color: '#111827' 
         }}
       >
@@ -17,7 +17,7 @@ const AdminLayout = () => {
           className="mb-8 p-6 rounded-lg shadow-sm"
           style={{
             backgroundColor: 'white',
-            borderBottom: '2px solid #4F46E5' 
+            borderBottom: '2px solid #EA580C' // Slightly darker orange border
           }}
         >
           <h1 className="text-2xl font-bold" style={{ color: '#111827' }}>
@@ -37,7 +37,7 @@ const AdminLayout = () => {
           <Outlet />
         </div>
 
-        <div className="mt-6 text-center text-sm" style={{ color: '#6B7280' }}>
+        <div className="mt-6 text-center text-sm" style={{ color: '#F3F4F6' }}>
           ClothStore Admin Panel © {new Date().getFullYear()}
         </div>
       </div>

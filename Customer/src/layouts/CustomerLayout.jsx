@@ -10,7 +10,7 @@ const CustomerLayout = () => {
       <main 
         className="flex-grow p-4 md:p-8" 
         style={{ 
-          backgroundColor: '#F3F4F6', 
+          backgroundColor: '#F97316', // Orange background
           color: '#111827' 
         }}
       >
@@ -18,7 +18,7 @@ const CustomerLayout = () => {
           className="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-6"
           style={{
             minHeight: 'calc(80vh - 100px)',
-            borderTop: '4px solid #4F46E5' 
+            borderTop: '4px solid #EA580C' // Slightly darker orange border
           }}
         >
           <Outlet />

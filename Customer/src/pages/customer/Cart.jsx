@@ -16,13 +16,13 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     if (!user || !screenshot || !customerName || !whatsappNumber) {
-      return alert("Please fill in all details and upload the screenshot.");
+      return alert("Please fill in all details and upload the payment screenshot.");
     }
 
     try {
       for (const item of cartItems) {
         const formData = new FormData();
-        formData.append("productId", item.id);
+        formData.append("foodId", item.id);
         formData.append("customerId", user._id);
         formData.append("amount", item.price * item.quantity);
         formData.append("customerName", customerName);
@@ -34,18 +34,18 @@ const Cart = () => {
         });
       }
 
-      alert("All payments submitted successfully!");
+      alert("Your order has been placed successfully!");
       clearCart();
     } catch (error) {
       console.error(error);
-      alert("Checkout failed.");
+      alert("Checkout failed. Please try again.");
     }
   };
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Your Shopping Cart</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Your Food Cart</h1>
         <p className="text-sm mt-1 text-gray-500">
           {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in your cart
         </p>
@@ -53,11 +53,11 @@ const Cart = () => {
 
       {cartItems.length === 0 ? (
         <div className="text-center py-12">
-          <div className="text-5xl mb-4 text-gray-100">🛒</div>
+          <div className="text-5xl mb-4 text-gray-100">🍔</div>
           <h3 className="text-xl font-medium mb-2 text-gray-900">Your cart is empty</h3>
-          <p className="mb-6 text-gray-500">Browse our collection to find something you like</p>
-          <button className="px-6 py-3 rounded-md font-medium bg-indigo-600 text-white">
-            Continue Shopping
+          <p className="mb-6 text-gray-500">Browse our menu to find your favorite dishes</p>
+          <button className="px-6 py-3 rounded-md font-medium bg-red-600 text-white">
+            Explore Menu
           </button>
         </div>
       ) : (
@@ -66,7 +66,7 @@ const Cart = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="hidden md:grid grid-cols-12 bg-gray-50 p-4 text-sm uppercase tracking-wider text-gray-500">
-                <div className="col-span-5">Product</div>
+                <div className="col-span-5">Dish</div>
                 <div className="col-span-2 text-center">Price</div>
                 <div className="col-span-3 text-center">Quantity</div>
                 <div className="col-span-2 text-right">Subtotal</div>
@@ -78,7 +78,7 @@ const Cart = () => {
                     <div className="grid grid-cols-12 items-center gap-4">
                       <div className="col-span-5 flex items-center space-x-4">
                         <img
-                          src={item.image || "/placeholder-product.jpg"}
+                          src={item.image || "/placeholder-food.jpg"}
                           alt={item.title}
                           className="w-20 h-20 rounded-md object-cover bg-gray-100"
                         />
@@ -99,7 +99,7 @@ const Cart = () => {
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             disabled={item.quantity <= 1}
                             style={{
-                              color: item.quantity <= 1 ? "#D1D5DB" : "#4F46E5",
+                              color: item.quantity <= 1 ? "#D1D5DB" : "#EF4444",
                               cursor: item.quantity <= 1 ? "not-allowed" : "pointer",
                             }}
                           >
@@ -107,7 +107,7 @@ const Cart = () => {
                           </button>
                           <span className="px-3 py-1 text-gray-900">{item.quantity}</span>
                           <button
-                            className="px-3 py-1 text-lg text-indigo-600"
+                            className="px-3 py-1 text-lg text-red-600"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
                             +
@@ -140,7 +140,7 @@ const Cart = () => {
                 Clear Cart
               </button>
               <button className="px-4 py-2 rounded-md font-medium bg-gray-100 text-gray-900">
-                Continue Shopping
+                Continue Browsing Menu
               </button>
             </div>
           </div>
@@ -155,16 +155,12 @@ const Cart = () => {
                   <span className="text-gray-900">₹{total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Shipping</span>
+                  <span className="text-gray-500">Delivery</span>
                   <span className="text-gray-900">Free</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Tax</span>
-                  <span className="text-gray-900">₹0.00</span>
                 </div>
                 <div className="border-t border-gray-200 pt-3 flex justify-between font-bold text-lg">
                   <span className="text-gray-900">Total</span>
-                  <span className="text-indigo-600">₹{total.toFixed(2)}</span>
+                  <span className="text-red-600">₹{total.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -218,11 +214,11 @@ const Cart = () => {
                 onClick={handleCheckout}
                 className={`w-full py-3 rounded-md font-medium transition ${
                   screenshot && customerName && whatsappNumber
-                    ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                    ? "bg-red-600 text-white hover:bg-red-700"
                     : "bg-gray-200 text-gray-400 cursor-not-allowed"
                 }`}
               >
-                Proceed to Checkout
+                Place Order
               </button>
             </div>
           </div>

@@ -37,24 +37,16 @@ const AdminSignup = () => {
     }
 
     try {
-      // ✅ Register Admin
       await axios.post(
         'https://project-hefx.vercel.app/api/auth/register',
         { name, email, password, role: 'admin' },
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true
-        }
+        { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
       );
 
-      // ✅ Auto Login
       const res = await axios.post(
         'http://localhost:5000/api/auth/login',
         { email, password, role: 'admin' },
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true
-        }
+        { headers: { 'Content-Type': 'application/json' }, withCredentials: true }
       );
 
       const { user, token } = res.data;
@@ -64,7 +56,7 @@ const AdminSignup = () => {
         return;
       }
 
-      login({ ...user, token }); // Set context
+      login({ ...user, token });
       navigate('/admin/dashboard');
     } catch (err) {
       console.error("❌ Admin Signup Error:", err);
@@ -75,17 +67,17 @@ const AdminSignup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#F97316' }}>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center">
             <FaUserShield className="text-white text-2xl" />
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
           Admin Registration
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-gray-100">
           Create your admin account to access the dashboard
         </p>
       </div>
@@ -136,7 +128,7 @@ const AdminSignup = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                  loading ? 'bg-indigo-300' : 'bg-indigo-600 hover:bg-indigo-700'
+                  loading ? 'bg-orange-400' : 'bg-orange-600 hover:bg-orange-700'
                 } focus:outline-none`}
               >
                 {loading ? 'Registering...' : 'Register Admin Account'}
@@ -149,7 +141,7 @@ const AdminSignup = () => {
   );
 };
 
-// ✅ Reusable InputField Component
+// Reusable InputField Component with orange focus
 const InputField = ({ label, id, icon, value, onChange, type = 'text' }) => (
   <div>
     <label htmlFor={id} className="block text-sm font-medium text-gray-700">
@@ -166,7 +158,7 @@ const InputField = ({ label, id, icon, value, onChange, type = 'text' }) => (
         required
         value={value}
         onChange={onChange}
-        className="py-3 pl-10 block w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+        className="py-3 pl-10 block w-full border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
       />
     </div>
   </div>

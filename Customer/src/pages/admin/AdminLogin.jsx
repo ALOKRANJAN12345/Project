@@ -23,7 +23,7 @@ const AdminLogin = () => {
         {
           email,
           password,
-          role: 'admin'  // ✅ Force admin role check
+          role: 'admin'
         },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -38,8 +38,8 @@ const AdminLogin = () => {
         return;
       }
 
-      login({ ...user, token }); // ✅ Set token + user in AuthContext
-      navigate('/admin/dashboard'); // ✅ Redirect to admin dashboard
+      login({ ...user, token });
+      navigate('/admin/dashboard');
     } catch (err) {
       console.error('Admin login error:', err);
       setError(err.response?.data?.error || 'Admin login failed');
@@ -49,17 +49,17 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#F97316' }}> {/* Orange background */}
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center">
             <FaUserShield className="text-white text-2xl" />
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
           Admin Portal
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-gray-100">
           Sign in to access your admin dashboard
         </p>
       </div>
@@ -96,7 +96,7 @@ const AdminLogin = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                  loading ? 'bg-indigo-400' : 'bg-indigo-600 hover:bg-indigo-700'
+                  loading ? 'bg-orange-400' : 'bg-orange-600 hover:bg-orange-700'
                 } focus:outline-none`}
               >
                 {loading ? 'Signing in...' : 'Sign in'}
@@ -125,7 +125,7 @@ const InputField = ({ label, id, icon, value, onChange, type = 'text' }) => (
         required
         value={value}
         onChange={onChange}
-        className="py-3 pl-10 block w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+        className="py-3 pl-10 block w-full border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
       />
     </div>
   </div>
