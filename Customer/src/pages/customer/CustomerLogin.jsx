@@ -10,11 +10,11 @@ const CustomerLogin = () => {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
-
+   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
+    setError('');     
+   
     try {
       const res = await axios.post('https://project-hefx.vercel.app/api/auth/login', {
         email,
@@ -33,7 +33,7 @@ const CustomerLogin = () => {
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
     }
-  };
+  }; 
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -131,3 +131,4 @@ const InputField = ({ id, label, icon, type = 'text', value, onChange }) => (
 );
 
 export default CustomerLogin;
+ 
